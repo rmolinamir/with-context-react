@@ -1,0 +1,83 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  max-width: 844px;
+  margin: 0 auto;
+  padding: 0px 24px;
+}
+
+.Title {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-size: 56px;
+  font-weight: bold;
+  margin: 24px 0;
+  border-bottom: 1px dashed rgb(206, 212, 222);
+}
+
+.Header {
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  font-size: 48px;
+  font-weight: normal;
+  margin: 24px 0;
+}
+
+.Header:before {
+  display: block;
+  position: absolute;
+  content: "";
+  bottom: -4px;
+  left: 10%;
+  width: 90%;
+  height: 3px;
+  background: rgb(102, 205, 170);
+}
+
+.List {
+  margin: 0
+}
+
+.Item {
+  /* text-transform: uppercase; */
+  list-style: upper-roman
+}
+
+.Anchor {
+  text-decoration: none;
+  /* color: mediumaquamarine; */
+  color: #fff;
+  font-weight: 500;
+}
+
+.Anchor code {
+  font-size: 1.3em;
+}
+
+.Functional {
+  color: rgb(255, 255, 115);
+}
+
+.Parenthesis {
+  color: yellow;
+}
+
+.Argument {
+  color: lightskyblue;
+}
+
+.JSX {
+  color: mediumaquamarine;
+}
+
+.Functional, .Parenthesis, .Argument, .JSX {
+  font-weight: bold;
+}
+
+.Code {
+  display: flex;
+  align-items: center;
+}

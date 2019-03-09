@@ -1,0 +1,275 @@
+import React, { Component } from 'react'
+// CSS
+import classes from './App.module.css'
+// JSX
+import { Provider } from 'react-png-button'
+import Example from './Example/Example'
+import CodeSnippet from './CodeSnippet/CodeSnippet'
+import EX1 from './docs/withContext'
+import EX2 from './docs/withContext_WithProvider'
+import EX3 from './docs/_WithContext'
+import EX4 from './docs/_WithContext_WithProvider'
+
+class App extends Component {
+  render () {
+    const ex1 = <><code className={classes.Functional}>withContext</code><code className={classes.Parenthesis}>(</code><code className={classes.Argument}>WrappedComponent</code>, <code className={classes.Argument}>Context</code><code className={classes.Parenthesis}>)</code> - Functional Wrapper</>
+    const ex2 = <><code className={classes.Functional}>withContext</code><code className={classes.Parenthesis}>(</code><code className={classes.Argument}>WrappedComponent</code>, <code className={classes.Argument}>Context</code>, <code className={classes.Argument}>Provider</code><code className={classes.Parenthesis}>)</code> - Functional Wrapper with a Provider</>
+    const ex3 = <><code className={classes.JSX}>{`<WithContext `}<code style={{ fontSize: '1em' }} className={classes.Argument}>context</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Context</code>{`} />`}</code> - JSX Element</>
+    const ex4 = <><code className={classes.JSX}>{`<WithContext `}<code style={{ fontSize: '1em' }} className={classes.Argument}>context</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Context</code>{`} `}<code style={{ fontSize: '1em' }} className={classes.Argument}>provider</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Provider</code>{`} /> `}</code> - JSX Element with a Provider</>
+
+    return (
+      <Provider>
+        <div className={classes.App}>
+          <h1 className={classes.Title}><code>with-context-react</code></h1>
+          <h2 className={classes.Header}>Examples</h2>
+          <ul className={classes.List}>
+            <li className={classes.Item}><a className={classes.Anchor} href='#with-context-functional'>{ex1}</a></li>
+            <li className={classes.Item}><a className={classes.Anchor} href='#with-context-functional-provider'>{ex2}</a></li>
+            <li className={classes.Item}><a className={classes.Anchor} href='#with-context-jsx'>{ex3}</a></li>
+            <li className={classes.Item}><a className={classes.Anchor} href='#with-context-jsx-provider'>{ex4}</a></li>
+          </ul>
+
+          <Example id='with-context-functional' title={ex1}>
+            <CodeSnippet
+              example={<>There is a provider wrapping the whole application, since no provider was passed to <strong>withContext</strong> as an argument, then it will fallback to the previously mentioned "global" provider's context.</>}
+              codeSnippet={`import React, { Component } from 'react'
+import propTypes from 'prop-types'
+// JSX
+import { withContext } from 'with-context-react'
+import Button, { Context } from 'react-png-button'
+
+class App extends Component {
+  static propTypes = {
+    _context: propTypes.object
+  }
+
+  accessContextMethods = () => {
+    this.props._context.setStyle({ 
+      padding: '8px', 
+      textTransform: 'uppercase', 
+      borderRadius: 'none', 
+      backgroundColor: 'goldenrod' 
+    })
+  }
+
+  render () {
+    console.log(this.props._context)
+    return (
+      <div>
+        <div style={{ margin: '12px 0' }}>Open your dev-tools console log!</div>
+        <Button onClick={this.accessContextMethods}>Click to change styles!</Button>
+      </div>
+    )
+  }
+}
+
+export default withContext(App, Context)`}
+              exampleLog='withContext(WrappedComponent, Context)'
+              consoleLog={`_context:
+  className: "Button_Button__27CKi Button_Disabled__1akHD"
+  classNames: {Success: "Button_Success__9H-g1", Danger: "Button_Danger__1WZvy", Primary: "Button_Primary__2Ceo_", Dark: "Button_Dark__2-ybK", Light: "Button_Light__1oAHs"}
+  setCustomClassname: ƒ setCustomClassname(key, className)
+  setGlobalClassName: ƒ setGlobalClassName(className)
+  setStyle: ƒ ()`}>
+              <EX1 />
+            </CodeSnippet>
+          </Example>
+
+          <Example id='with-context-functional-provider' title={ex2}>
+            <CodeSnippet
+              example={<>In this example we pass a <em>Provider</em> to <strong>withContext</strong> as an argument, then the changes will only work within that provider's context.</>}
+              codeSnippet={`import React, { Component } from 'react'
+import propTypes from 'prop-types'
+// CSS
+import classes from './exampleClasses.module.css'
+// JSX
+import { withContext } from 'with-context-react'
+import Button, { Context, Provider } from 'react-png-button'
+
+class App extends Component {
+  static propTypes = {
+    _context: propTypes.object
+  }
+
+  initialButtonClass = this.props._context.className
+
+  setClass = () => {
+    this.props._context.setGlobalClassName(classes.Button)
+  }
+
+  resetClass = () => {
+    this.props._context.setGlobalClassName(this.initialButtonClass)
+  }
+
+  render () {
+    console.log(this.props._context)
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
+        <div style={{ margin: '12px 0' }}>Open your dev-tools console log!</div>
+        <Button onClick={this.setClass}>Click to change styles!</Button>
+        <br />
+        <Button onClick={this.resetClass}>Back to normal!</Button>
+      </div>
+    )
+  }
+}
+
+export default withContext(App, Context, Provider)`}
+              exampleLog='withContext(WrappedComponent, Context, Provider)'>
+              <EX2 />
+            </CodeSnippet>
+          </Example>
+
+          <Example id='with-context-jsx' title={ex3}>
+            <CodeSnippet
+              example={<><strong>{`<WithContext context={Context} />`}</strong> works just like <strong>withRouter</strong>, since no provider was passed to <strong>WithContext</strong> as a prop, then it will fallback to the previously mentioned "global" provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop, on top of receiving their different and respective <em>title</em> props</strong>.</>}
+              codeSnippet={`import React, { Component } from 'react'
+// JSX
+import { WithContext } from 'with-context-react'
+import { Context } from 'react-png-button'
+import ClassComponent from './ClassComponent'
+
+class App extends Component {
+  render () {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
+        <div style={{ margin: '12px 0' }}>Open your dev-tools console log!</div>
+        <WithContext context={Context}>
+          <ClassComponent title={'First Class Component!'} />
+          <ClassComponent title={'Second Class Component!'} />
+        </WithContext>
+      </div>
+    )
+  }
+}
+
+export default App
+
+/**
+* ----------------------------
+* -------ClassComponent-------
+* ----------------------------
+*/
+
+import React, { Component } from 'react'
+import propTypes from 'prop-types'
+// JSX
+import Button from 'react-png-button'
+
+export default class ClassfulComponent extends Component {
+  static propTypes = {
+    title: propTypes.string,
+    _context: propTypes.object
+  }
+
+  setStyle = () => {
+    this.props._context.setStyle({ 
+      padding: '8px', 
+      textTransform: 'uppercase', 
+      borderRadius: 'none', 
+      backgroundColor: 'indigo', 
+      color: 'white' 
+    })
+  }
+
+  resetStyle = () => {
+    this.props._context.setStyle(undefined)
+  }
+
+  render () {
+    console.log(this.props)
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
+        <h3>{this.props.title}</h3>
+        <Button onClick={this.setStyle}>Click to change styles!</Button>
+        <br />
+        <Button onClick={this.resetStyle}>Back to normal!</Button>
+      </div>
+    )
+  }
+}`}
+              exampleLog='<WithContext context={Context} />'>
+              <EX3 />
+            </CodeSnippet>
+          </Example>
+
+          <Example id='with-context-jsx-provider' title={ex4}>
+            <CodeSnippet
+              example={<>And again, <strong>{`<WithContext context={Context} provider={Provider} />`}</strong> works just like <strong>withRouter</strong>, when a <em>provider</em> was passed to <strong>WithContext</strong> as a prop, then the changes will only work within that provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop, on top of receiving their different and respective <em>title</em> props</strong>.</>}
+              codeSnippet={`import React, { Component } from 'react'
+// JSX
+import { WithContext } from 'with-context-react'
+import { Context, Provider } from 'react-png-button'
+import ClassComponent from './ClassComponent_WithProvider'
+
+class App extends Component {
+  render () {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
+        <div style={{ margin: '12px 0' }}>Open your dev-tools console log!</div>
+        <WithContext context={Context} provider={Provider}>
+          <ClassComponent title={'First Class Component!'} />
+          <ClassComponent title={'Second Class Component!'} />
+        </WithContext>
+      </div>
+    )
+  }
+}
+
+export default App
+
+/**
+* ----------------------------
+* -------ClassComponent-------
+* ----------------------------
+*/
+
+import React, { Component } from 'react'
+import propTypes from 'prop-types'
+// JSX
+import Button from 'react-png-button'
+
+export default class ClassfulComponent extends Component {
+  static propTypes = {
+    title: propTypes.string,
+    _context: propTypes.object
+  }
+
+  setStyle = () => {
+    this.props._context.setStyle({ 
+      padding: '8px', 
+      textTransform: 'uppercase', 
+      borderRadius: 'none', 
+      backgroundColor: 'indigo', 
+      color: 'white' 
+    })
+  }
+
+  resetStyle = () => {
+    this.props._context.setStyle(undefined)
+  }
+
+  render () {
+    console.log(this.props)
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
+        <h3>{this.props.title}</h3>
+        <Button onClick={this.setStyle}>Click to change styles!</Button>
+        <br />
+        <Button onClick={this.resetStyle}>Back to normal!</Button>
+      </div>
+    )
+  }
+}`}
+              exampleLog='<WithContext context={Context} provider={Provider} />'>
+              <EX4 />
+            </CodeSnippet>
+          </Example>
+
+        </div>
+      </Provider>
+    )
+  }
+}
+
+export default App
