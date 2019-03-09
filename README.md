@@ -30,7 +30,7 @@ We'll use a package called **[`react-png-button`](https://www.npmjs.com/package/
 
 Let's assume there is a provider wrapping the whole application, since no provider will be passed to `withContext` as an argument, then it will fallback to the previously mentioned "global" provider's context scope.
 
-***`withContext(WrappedComponent, Context)`***:
+**`withContext(WrappedComponent, Context)`**:
 
 ```jsx
 import React, { Component } from 'react'
@@ -71,7 +71,7 @@ export default withContext(App, Context)
 
 In this example we pass a `Provider` to `withContext` as an argument, as well as the context of course, then said context and any functionality will only work within that provider's context scope.
 
-***`withContext(WrappedComponent, Context, Provider)`***:
+**`withContext(WrappedComponent, Context, Provider)`**:
 
 ```jsx
 import React, { Component } from 'react'
@@ -117,7 +117,7 @@ export default withContext(App, Context, Provider)
 
 `<WithContext context={Context} />` works just like `withRouter`, since no provider was passed to `WithContext` as a prop, then it will fallback to the previously mentioned "global" provider's context. **All the top level components will receive the context as a prop defined as `_context`, on top of receiving their respective props without any side-effects**.
 
-***`<WithContext context={Context} />`***:
+**`<WithContext context={Context} />`**:
 
 ```jsx
 import React, { Component } from 'react'
@@ -193,7 +193,7 @@ Finally just like before, `<WithContext context={Context} provider={Provider} />
 
 Any functionality will only work within that provider's context scope. **All the top level components will receive the context as a prop defined as `_context`, on top of receiving their respective props without any side-effects**.
 
-***`<WithContext context={Context} provider={Provider} />`***:
+**`<WithContext context={Context} provider={Provider} />`**:
 
 ```jsx
 import React, { Component } from 'react'
