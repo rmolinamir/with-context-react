@@ -31,7 +31,7 @@ class App extends Component {
 
           <Example id='with-context-functional' title={ex1}>
             <CodeSnippet
-              example={<>There is a provider wrapping the whole application, since no provider was passed to <strong>withContext</strong> as an argument, then it will fallback to the previously mentioned "global" provider's context.</>}
+              example={<>There is a provider wrapping the whole application, since no provider was passed to <strong>withContext</strong> as an argument, then it will fallback to the previously mentioned "global" provider's context scope.</>}
               codeSnippet={`import React, { Component } from 'react'
 import propTypes from 'prop-types'
 // JSX
@@ -77,7 +77,7 @@ export default withContext(App, Context)`}
 
           <Example id='with-context-functional-provider' title={ex2}>
             <CodeSnippet
-              example={<>In this example we pass a <em>Provider</em> to <strong>withContext</strong> as an argument, then the changes will only work within that provider's context.</>}
+              example={<>In this example we pass a <em>Provider</em> to <strong>withContext</strong> as an argument, as well as the context of course, then said context and any functionality will only work within that provider's context scope.</>}
               codeSnippet={`import React, { Component } from 'react'
 import propTypes from 'prop-types'
 // CSS
@@ -122,7 +122,7 @@ export default withContext(App, Context, Provider)`}
 
           <Example id='with-context-jsx' title={ex3}>
             <CodeSnippet
-              example={<><strong>{`<WithContext context={Context} />`}</strong> works just like <strong>withRouter</strong>, since no provider was passed to <strong>WithContext</strong> as a prop, then it will fallback to the previously mentioned "global" provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop, on top of receiving their different and respective <em>title</em> props</strong>.</>}
+              example={<><strong>{`<WithContext context={Context} />`}</strong> works just like <strong>withRouter</strong>, since no provider was passed to <strong>WithContext</strong> as a prop, then it will fallback to the previously mentioned "global" provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop defined as <em><strong>_context</strong></em>, on top of receiving their different and respective <em>title</em> props without any side-effects</strong>.</>}
               codeSnippet={`import React, { Component } from 'react'
 // JSX
 import { WithContext } from 'with-context-react'
@@ -195,7 +195,7 @@ export default class ClassfulComponent extends Component {
 
           <Example id='with-context-jsx-provider' title={ex4}>
             <CodeSnippet
-              example={<>And again, <strong>{`<WithContext context={Context} provider={Provider} />`}</strong> works just like <strong>withRouter</strong>, when a <em>provider</em> was passed to <strong>WithContext</strong> as a prop, then the changes will only work within that provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop, on top of receiving their different and respective <em>title</em> props</strong>.</>}
+              example={<>Finally just like before, <strong>{`<WithContext context={Context} provider={Provider} />`}</strong> works just like <strong>withRouter</strong> when a <em>provider</em> was passed as an argument, except this time it will be a prop. Any functionality will only work within that provider's context. <strong>Notice how all the <em>top level</em> components receive the context as a prop, on top of receiving their different and respective <em>title</em> props without any side-effects</strong>.</>}
               codeSnippet={`import React, { Component } from 'react'
 // JSX
 import { WithContext } from 'with-context-react'
@@ -226,6 +226,8 @@ export default App
 
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
+// CSS
+import classes from './exampleClasses.module.css'
 // JSX
 import Button from 'react-png-button'
 
@@ -235,18 +237,16 @@ export default class ClassfulComponent extends Component {
     _context: propTypes.object
   }
 
+  initialButtonClass = this.props._context.className
+
   setStyle = () => {
-    this.props._context.setStyle({ 
-      padding: '8px', 
-      textTransform: 'uppercase', 
-      borderRadius: 'none', 
-      backgroundColor: 'indigo', 
-      color: 'white' 
-    })
+    this.props._context.setStyle({ padding: '8px', textTransform: 'uppercase', borderRadius: 'none', backgroundColor: 'mediumaquamarine', color: 'white' })
+    this.props._context.setGlobalClassName(classes.Button)
   }
 
   resetStyle = () => {
     this.props._context.setStyle(undefined)
+    this.props._context.setGlobalClassName(this.initialButtonClass)
   }
 
   render () {
