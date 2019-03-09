@@ -226,6 +226,8 @@ export default App
 
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
+// CSS
+import classes from './exampleClasses.module.css'
 // JSX
 import Button from 'react-png-button'
 
@@ -235,18 +237,22 @@ export default class ClassfulComponent extends Component {
     _context: propTypes.object
   }
 
+  initialButtonClass = this.props._context.className
+
   setStyle = () => {
     this.props._context.setStyle({
       padding: '8px',
       textTransform: 'uppercase',
       borderRadius: 'none',
-      backgroundColor: 'indigo',
+      backgroundColor: 'mediumaquamarine',
       color: 'white'
     })
+    this.props._context.setGlobalClassName(classes.Button)
   }
 
   resetStyle = () => {
     this.props._context.setStyle(undefined)
+    this.props._context.setGlobalClassName(this.initialButtonClass)
   }
 
   render () {

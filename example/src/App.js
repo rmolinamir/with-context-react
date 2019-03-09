@@ -240,7 +240,13 @@ export default class ClassfulComponent extends Component {
   initialButtonClass = this.props._context.className
 
   setStyle = () => {
-    this.props._context.setStyle({ padding: '8px', textTransform: 'uppercase', borderRadius: 'none', backgroundColor: 'mediumaquamarine', color: 'white' })
+    this.props._context.setStyle({
+      padding: '8px',
+      textTransform: 'uppercase',
+      borderRadius: 'none',
+      backgroundColor: 'mediumaquamarine',
+      color: 'white'
+    })
     this.props._context.setGlobalClassName(classes.Button)
   }
 
