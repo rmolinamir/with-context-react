@@ -6,9 +6,9 @@
 
 ## Why use it
 
-Accessing a React context from within a class component is often times very dull and annoying. This package simplifies the proccess by simply wrapping your component with a function defined as `withRouter(...)`, or wrapping your JSX Element Constructors (classes) inside `<WithRouter ... />` while only having to pass the context as an argument or prop, respectively. **The context will be received as a prop defined as `_context` (e.g. `this.props._context`)**.
+Accessing a React context from within a class component is often times very dull and annoying. This package simplifies the proccess by simply wrapping your component with a function defined as `withRouter(...)`, or wrapping your JSX Element Constructors (classes) inside another component defined as `<WithRouter ... />`, while only having to pass the context as an argument or prop, respectively. **The context will be sent as a prop defined as `_context` (e.g. `this.props._context`)** - **keep in mind you need to have a context provider present somewhere within your application wrapping these elements**, it is also possible to pass a provider as an argument to `withRouter` or as a prop to `<WithRouter />`.
 
-You can also pass your context providers and save yourself some time spent wrapping your app or other components too, but keep in mind this will create a new scope for that context which might be beneficial or detrimental depending on the scenario. Either way, I suggest taking a look at the code snippets.
+You may also pass a context provider and save yourself some time spent wrapping your app or other components as well, but keep in mind that this will create a new scope for that context - which might be beneficial or detrimental depending on the scenario. Either way, I suggest taking a look at the code snippets more more information about this.
 
 ## Install
 
@@ -24,7 +24,7 @@ npm install --save with-context-react
 
 ## Usage
 
-We'll use a package called **[`react-png-button`](https://www.npmjs.com/package/react-png-button)** which includes a React context and a provider to showcase how both `withRouter` and `<WithRouter />` can come into play:
+We'll use a package called **[`react-png-button`](https://www.npmjs.com/package/react-png-button)** which includes a React context and a provider to showcase how both `withRouter` and `<WithRouter />` can come into play. **I suggest checking out the showcase referenced above and also looking at the react dev tools to see how the providers are rendered**.
 
 ### Using `withRouter` to wrap a single class (or functional) component
 
