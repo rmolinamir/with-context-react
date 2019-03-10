@@ -1,3 +1,13 @@
+.Dark {
+  color: #fff;
+  background-color: #2f2f2f;
+}
+
+.Light {
+  color: #484848;
+  background-color: #fff;
+}
+
 .App {
   display: flex;
   flex-wrap: wrap;

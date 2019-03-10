@@ -13,7 +13,8 @@ class CodeSnippet extends Component {
     example: propTypes.any,
     codeSnippet: propTypes.string,
     exampleLog: propTypes.string,
-    consoleLog: propTypes.string
+    consoleLog: propTypes.string,
+    logHeader: propTypes.string
   }
 
   state = {
@@ -40,7 +41,7 @@ class CodeSnippet extends Component {
           {this.props.example}
         </p>
         <Button style={{ padding: '6px' }} button='success' onClick={this.openModal}>Open Code Snippet</Button>
-        <h3>Watch it work:</h3>
+        <h3>Example:</h3>
         {this.props.children}
         <br />
         <Modal open={this.state.bIsModalOpen} closeModal={this.closeModal} center transparent>
@@ -49,7 +50,7 @@ class CodeSnippet extends Component {
         </Modal>
         {this.props.consoleLog ? (
           <>
-            <h4>This is what you'd see in the dev-tools (you may open them as well), showcasing the _context props:</h4>
+            <h4>{this.props.logHeader}</h4>
             <SyntaxHighlighter language='javascript' style={atomDark}>{this.props.consoleLog}></SyntaxHighlighter>
           </>
         )

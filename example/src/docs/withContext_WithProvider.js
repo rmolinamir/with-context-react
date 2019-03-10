@@ -25,7 +25,6 @@ class App extends Component {
     console.log(this.props._context)
     return (
       <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'column', alignItems: 'center' }}>
-        <div style={{ margin: '12px 0' }}>Open your dev-tools console log!</div>
         <Button onClick={this.setClass}>Click to change styles!</Button>
         <br />
         <Button onClick={this.resetClass}>Back to normal!</Button>
