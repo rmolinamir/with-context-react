@@ -329,7 +329,7 @@ class App extends Component {
 export default withContexts(App, { buttonContext: Context, themeContext: ThemeContext }, [Provider, ThemeProvider])
 ```
 
-### `<WithContext contexts={{...Contexts}} providers={[...Providers]} />` - JSX Element with multiple Contexts & Providers
+### `<WithContexts contexts={{...Contexts}} providers={[...Providers]} />` - JSX Element with multiple Contexts & Providers
 
 By using `<WithContexts contexts={{ ...Context }} providers={[ ...Provider ]} /`>, we can set up multiple contexts with their respective providers (if passed) similarly to withContexts, the difference is that `WithContext` will pass down the context as a prop defined by the respective key of the context object (structure above) to all of the top level components.
 
