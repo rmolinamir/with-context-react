@@ -5,12 +5,12 @@ import classes from './App.module.css'
 import { Provider } from 'react-png-button'
 import Example from './Example/Example'
 import CodeSnippet from './CodeSnippet/CodeSnippet'
-import EX1 from './docs/withContext'
-import EX2 from './docs/withContext_WithProvider'
-import EX3 from './docs/_WithContext'
-import EX4 from './docs/_WithContext_WithProvider'
-import EX5 from './docs/withContexts'
-import EX6 from './docs/_WithContexts'
+import EX1 from './docs/withContext/withContext'
+import EX2 from './docs/withContext/withContext_WithProvider'
+import EX3 from './docs/_WithContext/_WithContext'
+import EX4 from './docs/_WithContext/_WithContext_WithProvider'
+import EX5 from './docs/withContexts/withContexts'
+import EX6 from './docs/_WithContexts/_WithContexts'
 
 class App extends Component {
   render () {
@@ -19,7 +19,7 @@ class App extends Component {
     const ex3 = <><code className={classes.JSX}>{`<WithContext `}<code style={{ fontSize: '1em' }} className={classes.Argument}>context</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Context</code>{`} />`}</code> - JSX Element</>
     const ex4 = <><code className={classes.JSX}>{`<WithContext `}<code style={{ fontSize: '1em' }} className={classes.Argument}>context</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Context</code>{`} `}<code style={{ fontSize: '1em' }} className={classes.Argument}>provider</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>Provider</code>{`} /> `}</code> - JSX Element with a Provider</>
     const ex5 = <><code className={classes.Functional}>withContexts</code><code className={classes.Parenthesis}>(</code><code className={classes.Argument}>WrappedComponent</code>, <code className={classes.Argument}>{`{...Contexts}`}</code>, <code className={classes.Argument}>[...Providers]</code><code className={classes.Parenthesis}>)</code> - Functional wrapper for multiple Contexts & Providers</>
-    const ex6 = <><code className={classes.JSX}>{`<WithContext `}<code style={{ fontSize: '1em' }} className={classes.Argument}>contexts</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>{`{...Contexts}`}</code>{`} `}<code style={{ fontSize: '1em' }} className={classes.Argument}>providers</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>[...Providers]</code>{`} /> `}</code> - JSX Element with multiple Contexts & Providers</>
+    const ex6 = <><code className={classes.JSX}>{`<WithContexts `}<code style={{ fontSize: '1em' }} className={classes.Argument}>contexts</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>{`{...Contexts}`}</code>{`} `}<code style={{ fontSize: '1em' }} className={classes.Argument}>providers</code>{`={`}<code style={{ fontSize: '1em' }} className={classes.Argument}>[...Providers]</code>{`} /> `}</code> - JSX Element with multiple Contexts & Providers</>
 
     return (
       <Provider>

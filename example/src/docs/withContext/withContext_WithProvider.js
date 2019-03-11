@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 // CSS
-import classes from './exampleClasses.module.css'
+import classes from '../exampleClasses.module.css'
 // JSX
 import { withContext } from 'with-context-react'
 import Button, { Context, Provider } from 'react-png-button'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 // JSX
 import { withContexts } from 'with-context-react'
-import ThemeProvider, { Context as ThemeContext } from '../themeContext'
+import ThemeProvider, { Context as ThemeContext } from '../../themeContext'
 import Button, { Context, Provider } from 'react-png-button'
 
 class App extends Component {

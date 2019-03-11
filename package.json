@@ -1,6 +1,6 @@
 {
   "name": "with-context-react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A much easier way to access a context from within a class component (and functional components too) by using the new useContext API behind the scenes.",
   "author": "rmolinamir",
   "license": "MIT",

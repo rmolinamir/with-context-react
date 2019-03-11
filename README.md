@@ -6,9 +6,13 @@
 
 ## Why use it
 
-Accessing a React context from within a class component is often times very dull and annoying. This package simplifies the proccess by simply wrapping your component with a function defined as `withContext(...)`, or wrapping your JSX Element Constructors (classes) inside another component defined as `<WithContext ... />`, while only having to pass the context as an argument or prop, respectively. **The context will be sent as a prop defined as `_context` (e.g. `this.props._context`)** - **keep in mind you need to have a context provider present somewhere within your application wrapping these elements**, it is also possible to pass a provider as an argument to `withContext` or as a prop to `<WithContext />`.
+Accessing a React context from within a class component is often times very dull and annoying, especially when trying to use multiple context and providers. This package simplifies the proccess by simply wrapping your component with a function defined as `withContext(...)`, or wrapping your JSX Element Constructors (classes) inside another component defined as `<WithContext ... />`, while only having to pass the context as an argument or prop, respectively. **The context will be sent as a prop defined as `_context` (e.g. `this.props._context`)** - **keep in mind you need to have a context provider present somewhere within your application wrapping these elements**, it is also possible to pass a provider as an argument to `withContext` or as a prop to `<WithContext />`.
 
 You may also pass a context provider and save yourself some time spent wrapping your app or other components as well, but keep in mind that this will create a new scope for that context - which might be beneficial or detrimental depending on the scenario. Either way, I suggest taking a look at the code snippets more more information about this.
+
+If the intention is **to pass multiple contexts (and providers)**, then you may do so by using the export `withContexts(...)` which works similarly to how `withContext` works while supporting multiple contexts and providers. Similarly, `<WithContexts ... />` is a component that passes down the contexts to all wrapped constructors as props (within the first scope level), while also setting up every passed provider as higher order component (HOC), if any.
+
+---
 
 ## Install
 
@@ -16,15 +20,23 @@ You may also pass a context provider and save yourself some time spent wrapping 
 npm install --save with-context-react
 ```
 
+---
+
 ## CodeSandbox Showcase
 
 ### [Showcase](https://o96ljrvjpq.codesandbox.io/)
 
 [![Edit with-context-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/o96ljrvjpq?fontsize=14)
 
+---
+
 ## Usage
 
 We'll use a package called **[`react-png-button`](https://www.npmjs.com/package/react-png-button)** which includes a React context and a provider to showcase how both `withContext` and `<WithContext />` can come into play. **I suggest checking out the showcase referenced above and also looking at the react dev tools to see how the providers are rendered**.
+
+We can also pass multiple contexts and providers by using `withContexts` and `<WithContexts />`, both of these work similarly to their respective counterparts mentioned above. To do this, I have done a context that changes the class of the `<body>` HTML element, from a dark theme to a light theme and vice versa, [here's the source code for that context](https://github.com/rmolinamir/with-context-react/blob/master/example/src/themeContext.js).
+
+---
 
 ### Using `withContext` to wrap a single class (or functional) component
 
@@ -66,6 +78,8 @@ class App extends Component {
 
 export default withContext(App, Context)
 ```
+
+---
 
 ### Using `withContext` to wrap a single class (or functional) component while also passing a React context provider
 
@@ -112,6 +126,8 @@ class App extends Component {
 
 export default withContext(App, Context, Provider)
 ```
+
+---
 
 ### `<WithContext context={Context} />` - JSX Element
 
@@ -186,6 +202,8 @@ export default class ClassfulComponent extends Component {
   }
 }
 ```
+
+---
 
 ### `<WithContext context={Context} provider={Provider} />` - JSX Element with a Provider
 
@@ -269,6 +287,8 @@ export default class ClassfulComponent extends Component {
 }
 ```
 
+---
+
 ### `withContexts(WrappedComponent, {...Contexts}, [...Providers])` - Functional wrapper for multiple Contexts & Providers
 
 By using `withContext` we can **set up multiple contexts and providers in one go**, by passing them as arguments.
@@ -282,6 +302,10 @@ As before, any functionality will only work within that provider's context scope
 interface IContexts {
   [propName: string]: React.Context<any>
 }
+
+// e.g.
+
+
 ```
 
 **`withContexts(WrappedComponent, {...Contexts}, [...Providers])`**:
@@ -328,6 +352,7 @@ class App extends Component {
 
 export default withContexts(App, { buttonContext: Context, themeContext: ThemeContext }, [Provider, ThemeProvider])
 ```
+---
 
 ### `<WithContexts contexts={{...Contexts}} providers={[...Providers]} />` - JSX Element with multiple Contexts & Providers
 

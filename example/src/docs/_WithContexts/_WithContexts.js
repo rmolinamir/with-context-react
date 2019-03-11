@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // JSX
 import { WithContexts } from 'with-context-react'
 import { Context as ButtonContext, Provider as ButtonProvider } from 'react-png-button'
-import ThemeProvider, { Context as ThemeContext } from '../themeContext'
+import ThemeProvider, { Context as ThemeContext } from '../../themeContext'
 import ClassComponent from './ClassComponent_WithContexts'
 
 class App extends Component {
