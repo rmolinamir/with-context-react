@@ -352,6 +352,7 @@ class App extends Component {
 
 export default withContexts(App, { buttonContext: Context, themeContext: ThemeContext }, [Provider, ThemeProvider])
 ```
+
 ---
 
 ### `<WithContexts contexts={{...Contexts}} providers={[...Providers]} />` - JSX Element with multiple Contexts & Providers
