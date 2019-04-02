@@ -8,7 +8,7 @@ import { composeProviders } from './composeProviders'
 /**
  * @function WithProviders serves as a HOC wrapper to set up the React context within.
  * It nests all of the Provider HOCs into a single one by using `composeProviders`.
- * @param props.contexts `React.Context<any>` object, don't use `useContext` on it or anything 
+ * @param props.contexts Object of React Contexts, don't use `useContext` on it or anything 
  * similar on any context - it's handled by `withContexts` and/or `WithContexts`.
  * @param props.providers Context.Provider `array` required that allows consuming components 
  * to subscribe to context changes, they will be composed into a single HOC.
@@ -28,10 +28,11 @@ const WithProviders = (props: IWithProvidersProps) => {
  * @function withContexts will send the passed contexts as a prop defined by their respective key
  * name - keep in mind you need to have the respective context provider present somewhere within 
  * your application wrapping these elements or pass the provider(s) as an argument.
- * @param Contexts `React.Context<any>` object, don't use `useContext` on it or anything 
- * similar on any context - it's handled by `withContexts` and/or `WithContexts`.
- * @param ProvidersArray Context.Provider `array` required that allows consuming components 
- * to subscribe to context changes, they will be composed into a single HOC.
+ * @param Contexts Object React Contexts, don't use `useContext` on it or anything  similar on
+ * any context - it's handled by `withContexts` and/or `WithContexts`. You will receive each
+ * context as a prop. The name of the prop is equal to their respective keys.
+ * @param ProvidersArray An array of Context Providers, they allows consuming components to
+ * subscribe to context changes, they will be composed into a single HOC.
  */
 export const withContexts = (WrappedComponent: React.JSXElementConstructor<any>, Contexts: IContexts, ProvidersArray?: ProvidersArray) => {
   return (props: any) => {
@@ -40,7 +41,7 @@ export const withContexts = (WrappedComponent: React.JSXElementConstructor<any>,
         <WithProviders
           contexts={Contexts}
           providers={ProvidersArray}>
-          <WrappedComponent />
+          <WrappedComponent {...props} />
         </WithProviders>
       )
     } else {
@@ -67,8 +68,9 @@ export const withContexts = (WrappedComponent: React.JSXElementConstructor<any>,
  * name to every wrapped element within the first level scope - keep in mind you need to have the 
  * respective context provider present somewhere within your application wrapping these elements 
  * or pass the provider(s) as an argument.
- * @param props.contexts `React.Context<any>` object, don't use `useContext` on it or anything 
- * similar on any context - it's handled by `withContexts` and/or `WithContexts`.
+ * @param props.contexts * Object React Contexts, don't use `useContext` on it or anything  similar on
+ * any context - it's handled by `withContexts` and/or `WithContexts`. You will receive each
+ * context as a prop. The name of the prop is equal to their respective keys.
  * @param props.providers Context.Provider `array` required that allows consuming components 
  * to subscribe to context changes, they will be composed into a single HOC.
  */
