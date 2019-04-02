@@ -22,9 +22,7 @@ npm install --save with-context-react
 
 ---
 
-## CodeSandbox Showcase
-
-### [Showcase](https://o96ljrvjpq.codesandbox.io/)
+## [Showcase](https://www.robertmolina.dev/codelab/with-context-react)
 
 [![Edit with-context-react](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/o96ljrvjpq?fontsize=14)
 
